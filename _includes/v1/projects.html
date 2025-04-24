@@ -1,6 +1,11 @@
-<div class="container projects-container">
-  <h3 id="{{ site.projects_title | slugify | default: 'projects'}}">{{ site.projects_title | default: "Projects" }}</h3>
-  {% for project in site.data.projects %}
-    {% include {{ project.layout | default: 'left' | append: ".html" | prepend: "v1/" }} item=project %}
-  {% endfor %}
-</div>
+<ul>
+{% assign pages = site.pages
+     | where_exp:"p","p.path contains 'projects/' and p.name == 'index.md'"
+     | sort:"path" %}
+{% for p in pages %}
+  <li>
+    <a href="{{ p.url }}">{{ p.title }}</a>
+    <span class="tech">{{ p.tech }}</span>
+  </li>
+{% endfor %}
+</ul>
