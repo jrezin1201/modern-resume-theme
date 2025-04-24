@@ -1,11 +1,10 @@
 <ul>
-{% assign pages = site.pages
-     | where_exp:"p","p.path contains 'projects/' and p.name == 'index.md'"
-     | sort:"path" %}
-{% for p in pages %}
-  <li>
-    <a href="{{ p.url }}">{{ p.title }}</a>
-    <span class="tech">{{ p.tech }}</span>
-  </li>
+{% for p in site.pages %}
+  {% if p.url startswith '/projects/' %}
+    <li>
+      <a href="{{ p.url }}">{{ p.title | default: p.url }}</a>
+      {% if p.tech %}<span class="tech">{{ p.tech }}</span>{% endif %}
+    </li>
+  {% endif %}
 {% endfor %}
 </ul>
