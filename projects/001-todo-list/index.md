@@ -1,4 +1,4 @@
-{% include v1/projects.html %}
+
 ---
 layout: page          # tells Jekyll which HTML shell to use
 title: Todo List
